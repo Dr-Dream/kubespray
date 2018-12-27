@@ -139,7 +139,7 @@ controllerManagerExtraVolumes:
   hostPath: "{{ kube_config_dir }}/openstack-cacert.pem"
   mountPath: "{{ kube_config_dir }}/openstack-cacert.pem"
 {% endif %}
-{% if cloud_provider is defined and cloud_provider in ["openstack", "azure", "vsphere", "aws", "external"] %}
+{% if cloud_provider is defined and cloud_provider in ["openstack", "azure", "vsphere", "aws"] %}
 - name: cloud-config
   hostPath: {{ kube_config_dir }}/cloud_config
   mountPath: {{ kube_config_dir }}/cloud_config
