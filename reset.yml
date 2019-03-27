@@ -1,5 +1,6 @@
 ---
 - hosts: localhost
+  become: no
   tasks:
     - name: "Check ansible version !=2.7.0"
       assert:
@@ -11,6 +12,12 @@
         - check
   vars:
     ansible_connection: local
+
+- hosts: bastion[0]
+  gather_facts: False
+  roles:
+    - { role: kubespray-defaults}
+    - { role: bastion-ssh-config, tags: ["localhost", "bastion"]}
 
 - hosts: all
   gather_facts: true
